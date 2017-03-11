@@ -3,14 +3,16 @@ class AreasController < ApplicationController
 
   # POST /areas/calculate
   def calculate
-    if params[:answers]
-      # TODO: use data from different sources to determine what area to return
-      @area = Area.last
-    else
-      @area = Area.first
-    end
-
+    # TODO: use data from different sources to determine what area to return
+    @area = Area.choice_logic(params[:answers])
+    #@area.components << Component.find_or_create(type: "")
     render json: @area
+  end
+
+  def test
+    render json: Booli.listings("kungsholmen")
+    #render json: GooglePlace.text_search("Gym Kungsholmen")
+    #render json: SL.nearby_stops("59.3340924", "18.0344631")
   end
 
   # GET /areas
@@ -22,7 +24,7 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   def show
-    render json: @area
+    render json: @area, serializer: AreaDetailedSerializer
   end
 
   # POST /areas
