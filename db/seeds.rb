@@ -15,6 +15,18 @@
   { :name => 'Östermalm' },
   { :name => 'Vasastan' },
   { :name => 'Gärdet' }
+].each do |a|
+  Area.where(:name => a[:name]).first_or_create()
+end
+
+[
+  { :name => 'Natur', :opt1 => "Skog", :opt2 => "Parker" },
+  { :name => 'Barer', :opt1 => "Öl", :opt2 => "Drinkar" },
+  { :name => 'Musik', :opt1 => "Jazz", :opt2 => "Elektro" },
+  { :name => 'Restaurang', :opt1 => "Pizza", :opt2 => "Gourmet" },
+  { :name => 'Träning', :opt1 => "Gym", :opt2 => "Motionsspår" },
+  { :name => 'Stadspuls', :opt1 => "Hippt", :opt2 => "Lugnt" },
+  { :name => 'Kultur', :opt1 => "Teater", :opt2 => "Festival" }
 ].each do |c|
-  Area.where(:name => c[:name]).first_or_create()
+  Category.where(:name => c[:name]).first_or_create(c)
 end
