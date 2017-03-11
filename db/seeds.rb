@@ -7,26 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 [
-  { :name => 'Kungsholmen' },
-  { :name => 'Söder' },
-  { :name => 'Solna' },
-  { :name => 'Lidingö' },
-  { :name => 'Midsommarkransen' },
-  { :name => 'Östermalm' },
-  { :name => 'Vasastan' },
-  { :name => 'Gärdet' }
+  { :name => "kungsholmen", :label => 'Kungsholmen' },
+  { :name => "soder", :label => 'Söder' },
+  { :name => 'solna', :label => 'Solna' },
+  { :name => 'midsommarkransen', :label => 'Midsommarkransen' },
+  { :name => 'ostermalm', :label => 'Östermalm' },
+  { :name => 'vasastan', :label => 'Vasastan' },
+  { :name => 'gardet', :label => "Gärdet" }
 ].each do |a|
-  Area.where(:name => a[:name]).first_or_create()
+  Area.where(:name => a[:name]).first_or_create.update(a)
 end
 
 [
-  { :name => 'Natur', :opt1 => "Skog", :opt2 => "Parker" },
-  { :name => 'Barer', :opt1 => "Öl", :opt2 => "Drinkar" },
-  { :name => 'Musik', :opt1 => "Jazz", :opt2 => "Elektro" },
-  { :name => 'Restaurang', :opt1 => "Pizza", :opt2 => "Gourmet" },
-  { :name => 'Träning', :opt1 => "Gym", :opt2 => "Motionsspår" },
-  { :name => 'Stadspuls', :opt1 => "Hippt", :opt2 => "Lugnt" },
-  { :name => 'Kultur', :opt1 => "Teater", :opt2 => "Festival" }
+  { :name => 'natur', :label => 'Natur',  :opt1 => "Skog", :opt2 => "Parker" },
+  { :name => 'barer', :label => 'Barer', :opt1 => "Öl", :opt2 => "Drinkar" },
+  { :name => 'musik', :label => 'Musik', :opt1 => "Jazz", :opt2 => "Elektro" },
+  { :name => 'restaurang', :label => 'Restaurang', :opt1 => "Pizza", :opt2 => "Gourmet" },
+  { :name => 'traning', :label => 'Träning', :opt1 => "Gym", :opt2 => "Motionsspår" },
+  { :name => 'stadspuls', :label => 'Stadspuls', :opt1 => "Hippt", :opt2 => "Lugnt" },
+  { :name => 'kultur', :label => 'Kultur', :opt1 => "Teater", :opt2 => "Festival" }
 ].each do |c|
-  Category.where(:name => c[:name]).first_or_create(c)
+  Category.where(:name => c[:name]).first_or_create().update(c)
 end
