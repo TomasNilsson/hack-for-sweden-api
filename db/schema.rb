@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311134342) do
+ActiveRecord::Schema.define(version: 20170311211159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,27 @@ ActiveRecord::Schema.define(version: 20170311134342) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "label"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.string   "opt1"
-    t.string   "opt2"
+    t.string   "left"
+    t.string   "right"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "label"
+  end
+
+  create_table "components", force: :cascade do |t|
+    t.string   "type"
+    t.string   "title"
+    t.string   "text"
+    t.string   "value"
+    t.integer  "area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["area_id"], name: "index_components_on_area_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,4 +49,5 @@ ActiveRecord::Schema.define(version: 20170311134342) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "components", "areas"
 end

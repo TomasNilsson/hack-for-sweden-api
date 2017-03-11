@@ -1,5 +1,3 @@
-require 'digest/sha1'
-
 class GooglePlace
   include HTTParty
   base_uri "https://maps.googleapis.com/maps/api/place"
