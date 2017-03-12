@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 [
-  { :name => "kungsholmen", :label => 'Kungsholmen', latitude: "59.331181", longitude: "18.040736" },
-  { :name => "soder", :label => 'Södermalm', latitude: "59.312527", longitude: "18.061619" },
-  { :name => 'solna', :label => 'Solna', latitude: "59.368879", longitude: "18.008433" },
-  { :name => 'midsommarkransen', :label => 'Midsommarkransen', latitude: "59.300000", longitude: "18.000000" },
-  { :name => 'ostermalm', :label => 'Östermalm', latitude: "59.336684", longitude: "18.085292" },
-  { :name => 'vasastan', :label => 'Vasastan', latitude: "59.344233", longitude: "18.045621" },
-  { :name => 'gardet', :label => "Gärdet", latitude: "59.343580", longitude: "18.096686" }
+  { :name => "kungsholmen", :label => 'Kungsholmen', latitude: "59.331181", longitude: "18.040736", income: "26 851 kr", average_age: "45 år", voting_result: "Borgerligt" },
+  { :name => "soder", :label => 'Södermalm', latitude: "59.312527", longitude: "18.061619", income: "23 919 kr", average_age: "47 år", voting_result: "Vänster" },
+  { :name => 'solna', :label => 'Solna', latitude: "59.368879", longitude: "18.008433", average_age: "43 år", voting_result: "Borgerligt" },
+  { :name => 'midsommarkransen', :label => 'Midsommarkransen', latitude: "59.300000", longitude: "18.000000", average_age: "39 år", voting_result: "Vänster" },
+  { :name => 'ostermalm', :label => 'Östermalm', latitude: "59.336684", longitude: "18.085292", income: "31 327 kr", average_age: "49 år", voting_result: "Borgerligt" },
+  { :name => 'vasastan', :label => 'Vasastan', latitude: "59.344233", longitude: "18.045621", average_age: "46 år", voting_result: "Borgerligt"},
+  { :name => 'gardet', :label => "Gärdet", latitude: "59.343580", longitude: "18.096686", average_age: "45 år", voting_result: "Borgerligt" }
 ].each do |a|
   Area.where(:name => a[:name]).first_or_create.update(a)
 end

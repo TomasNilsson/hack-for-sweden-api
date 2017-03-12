@@ -24,6 +24,15 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   def show
+    if @area.income.present?
+      Component.where(area_id: @area.id, type: "fact", title: "Medelinkomst", value: @area.income).first_or_create()
+    end
+    if @area.average_age.present?
+      Component.where(area_id: @area.id, type: "fact", title: "Medelålder", value: @area.average_age).first_or_create()
+    end
+    if @area.voting_result.present?
+      Component.where(area_id: @area.id, type: "fact", title: "Röstar", value: @area.voting_result).first_or_create()
+    end
     Component.where(area_id: @area.id, type: "fact", title: "Bostäder till salu").first_or_create().update(value: Booli.listings(@area.label)['totalCount'])
     render json: @area, serializer: AreaDetailedSerializer
   end
