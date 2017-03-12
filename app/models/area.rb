@@ -3,12 +3,12 @@ class Area < ApplicationRecord
 
   def self.choice_logic(answers)
     input_array = Array.new(Category.count, 0)
-    if answers.present?
+    if answers.is_a?(Array)
       answers.each do |a|
         if a[:choice] == "left"
-          input_array[a[:id]-1] = -1
+          input_array[a[:category_id]-1] = -1
         else
-          input_array[a[:id]-1] = 1
+          input_array[a[:category_id]-1] = 1
         end
       end
     end 
