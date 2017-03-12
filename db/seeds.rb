@@ -8,7 +8,7 @@
 
 [
   { :name => "kungsholmen", :label => 'Kungsholmen' },
-  { :name => "soder", :label => 'Söder' },
+  { :name => "soder", :label => 'Södermalm' },
   { :name => 'solna', :label => 'Solna' },
   { :name => 'midsommarkransen', :label => 'Midsommarkransen' },
   { :name => 'ostermalm', :label => 'Östermalm' },

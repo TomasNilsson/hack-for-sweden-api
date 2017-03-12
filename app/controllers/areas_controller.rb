@@ -5,12 +5,12 @@ class AreasController < ApplicationController
   def calculate
     # TODO: use data from different sources to determine what area to return
     @area = Area.choice_logic(params[:answers])
-    #@area.components << Component.find_or_create(type: "")
+    
     render json: @area
   end
 
   def test
-    render json: Booli.listings("kungsholmen")
+    render json: Booli.listings("Södermalm")['totalCount']
     #render json: GooglePlace.text_search("Gym Kungsholmen")
     #render json: SL.nearby_stops("59.3340924", "18.0344631")
   end
@@ -24,6 +24,7 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   def show
+    Component.where(area_id: @area.id, type: "fact", title: "Bostäder till salu").first_or_create().update(value: Booli.listings(@area.label)['totalCount'])
     render json: @area, serializer: AreaDetailedSerializer
   end
 

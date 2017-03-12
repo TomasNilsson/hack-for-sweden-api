@@ -8,6 +8,6 @@ class Booli
     key = ENV["booli_api_key"]
     unique = "%.16x"%rand(9**20).to_s
     hash = Digest::SHA1.hexdigest(callerId + time + key + unique)
-    get("/listings?q="+query+"&callerId="+callerId+"&time="+time+"&unique="+unique+"&hash="+hash)
+    response = get("/listings?q="+URI.encode(query)+"&callerId="+callerId+"&time="+time+"&unique="+unique+"&hash="+hash)
   end
 end
