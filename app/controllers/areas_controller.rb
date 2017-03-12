@@ -10,8 +10,11 @@ class AreasController < ApplicationController
   end
 
   def test
-    render json: Booli.listings("Södermalm")['totalCount']
+    render json: Booli.listings("Södermalm")
+    @area = Area.first
+    #render json: GooglePlace.nearby_search("restaurant", @area.latitude, @area.longitude)
     #render json: GooglePlace.text_search("Gym Kungsholmen")
+    #render json: GooglePlace.text_search_count("Grocery Kungsholmen")
     #render json: SL.nearby_stops("59.3340924", "18.0344631")
   end
 
@@ -34,6 +37,10 @@ class AreasController < ApplicationController
       Component.where(area_id: @area.id, type: "fact", title: "Röstar", value: @area.voting_result).first_or_create()
     end
     Component.where(area_id: @area.id, type: "fact", title: "Bostäder till salu").first_or_create().update(value: Booli.listings(@area.label)['totalCount'])
+    image_path = "/images/#{@area.name}_migration_netto.png"
+    if File.file? "#{Rails.public_path}#{image_path}"
+      Component.where(area_id: @area.id, type: "image", title: "Inflyttning - Utflyttning", value: url_for(request.protocol+request.host+image_path)).first_or_create()
+    end
     render json: @area, serializer: AreaDetailedSerializer
   end
 
